@@ -13,16 +13,28 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-
+	public final static String EXTRA_PICTURE = "com.example.androidbootcamp.PICTURE";
+	
+	public class movie{
+			String title;
+			String picture;
+	}
+	
+	List<movie> movieData;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +47,20 @@ public class MainActivity extends Activity {
 		        new queryTask(getApplicationContext(), i).execute();
 	        	i++;
 		}}, 5000);
+        ListView list = (ListView) findViewById(R.id.list);
+        list.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent (MainActivity.this, DisplayMessageActivity.class);
+				String title = movieData.get(position).title;
+				String picture = movieData.get(position).picture;
+		    	intent.putExtra(EXTRA_MESSAGE, title);
+		    	intent.putExtra(EXTRA_PICTURE, picture);
+		    	startActivity(intent);
+			}
+		});
     }
 
 	/*public void sendMessage (View view) {
@@ -69,7 +95,7 @@ public class MainActivity extends Activity {
 				URL url = new URL("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=" + number + "&country=us&apikey=bapg8jv23rf37dcusgra7znj");
 				urlConnection = (HttpURLConnection) url.openConnection();
 				BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-				System.out.println("HERE");
+				//System.out.println("HERE");
 				String inputLine = "";
 				while( (inputLine = in.readLine()) != null){
 					output += inputLine;
@@ -79,7 +105,7 @@ public class MainActivity extends Activity {
 			} finally {
 				urlConnection.disconnect();
 			}
-	    	System.out.println(output);
+//	    	System.out.println(output);
 			return output;
 		} 
 		
@@ -88,14 +114,21 @@ public class MainActivity extends Activity {
 				JSONObject data = new JSONObject(output);
 				JSONArray movies = data.getJSONArray("movies");
 				List<String> titles = new ArrayList<String>();
+				List<movie> movieList = new ArrayList<movie>();
 				for(int i = 0; i < movies.length(); i++) {
 					titles.add(movies.getJSONObject(i).getString("title"));
+					movie insert = new movie();
+					insert.title = movies.getJSONObject(i).getString("title");
+					insert.picture = movies.getJSONObject(i).getJSONObject("posters").getString("original");
+					movieList.add(insert);
 				}
 				//System.out.println(Arrays.toString(titles.toArray(new String[titles.size()])));
 				//add stuff to ListView
 				ListView list = (ListView) findViewById(R.id.list);
-				ArrayAdapter<String> titleAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_activated_1, titles);
+				ArrayAdapter<String> titleAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, titles);
 				list.setAdapter(titleAdapter);
+				
+				loadInfo(movieList);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -107,6 +140,10 @@ public class MainActivity extends Activity {
 		
     }
     
+    public void loadInfo(List<movie> movieList){
+    	movieData = movieList;
+    	//System.out.println(movieData);
+    }
 //    public void loadList(View view){
 //		
 //    	/*Intent intent = new Intent (this, DisplayMessageActivity.class);

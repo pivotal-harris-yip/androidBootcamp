@@ -1,13 +1,20 @@
 package com.example.androidbootcamp;
 
+import java.io.InputStream;
+import java.net.URL;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DisplayMessageActivity extends Activity {
@@ -15,18 +22,48 @@ public class DisplayMessageActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_display_message);
 		
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+		String picture = intent.getStringExtra(MainActivity.EXTRA_PICTURE);
 		
-		TextView textView = new TextView(this);
+		TextView textView = (TextView) findViewById(R.id.movie_title);
 		textView.setTextSize(40);
 		textView.setText(message);
 		
-		setContentView(textView);
-		
+		ImageGet img = new ImageGet(this, picture);
+		img.execute();
 		// Show the Up button in the action bar.
 		setupActionBar();
+	}
+	
+	private class ImageGet extends AsyncTask<URL, Integer, Drawable>{
+
+		String pic;
+		Context context;
+		public ImageGet(Context context, String picture){
+			pic = picture;
+			this.context = context.getApplicationContext();
+		}
+		@Override
+		protected Drawable doInBackground(URL... arg0) {
+			Drawable d = null;
+			try {
+				URL url = new URL(pic);
+				InputStream content = (InputStream)url.getContent();
+				d = Drawable.createFromStream(content , "src"); 
+				return d;
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return d;
+		}
+		
+		protected void onPostExecute(Drawable d){
+			ImageView imageView = (ImageView) findViewById(R.id.movie_image);
+			imageView.setImageDrawable(d);
+		}
 	}
 
 	/**
