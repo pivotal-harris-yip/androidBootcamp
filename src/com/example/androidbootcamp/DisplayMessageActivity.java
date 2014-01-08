@@ -43,7 +43,7 @@ public class DisplayMessageActivity extends Activity {
 		}
 		
 		TextView synopsis = (TextView) findViewById(R.id.synopsis);
-		synopsis.setTextSize(15);
+		synopsis.setTextSize(18);
 		synopsis.setText(synopText);
 		
 		

@@ -7,33 +7,52 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DisplayMessageActivity" 
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/black">
 
      <TextView
         android:id="@+id/movie_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:background="@color/awesome"
+        android:textColor="@android:color/white"/>
 
      <LinearLayout 
+         android:baselineAligned="false"
          android:layout_width="match_parent"
     	 android:layout_height="fill_parent"
-    	 android:orientation="horizontal" >
+    	 android:orientation="horizontal" 
+    	 android:layout_marginTop="5dp">
     	
-         <ImageView android:id="@+id/movie_image" 
-        	android:contentDescription="@string/hello_world"
+         <RelativeLayout 
         	android:layout_width="0dp"
         	android:layout_weight="0.5"
-        	android:layout_height="fill_parent"/>
+        	android:layout_height="fill_parent"
+        	android:layout_marginRight="5dp" >
+             
+             <ImageView 
+                 android:id="@+id/movie_image" 
+                 android:contentDescription="@string/hello_world" 
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:layout_alignParentTop="true" />
+                 
+         </RelativeLayout>
          
          <ScrollView              
              android:layout_width="0dp"
         	 android:layout_weight="0.5"
-             android:layout_height="fill_parent" >
+             android:layout_height="fill_parent"
+             android:layout_marginLeft="5dp"
+             >
              
              <TextView 
                  android:id="@+id/synopsis"
                  android:layout_width="wrap_content"
-        	 	 android:layout_height="wrap_content"/>
+        	 	 android:layout_height="wrap_content"
+        	 	 android:background="@color/lightgray"
+        	 	 android:padding="2dp" 
+        	 	 />
              
          </ScrollView>
          
