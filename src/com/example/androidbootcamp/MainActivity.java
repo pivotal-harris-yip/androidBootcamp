@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
         URL url = null;
         
 		try {
-			url = new URL("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=15&country=us&apikey=bapg8jv23rf37dcusgra7znj");
+			url = new URL("http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=50&country=us&apikey=bapg8jv23rf37dcusgra7znj");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
