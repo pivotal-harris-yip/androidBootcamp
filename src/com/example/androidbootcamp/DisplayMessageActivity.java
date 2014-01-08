@@ -27,7 +27,7 @@ public class DisplayMessageActivity extends Activity {
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 		URL picture = null;
-		
+		String synopText = intent.getStringExtra(MainActivity.EXTRA_SYNOPSIS);
 		try {
 			picture = new URL(intent.getStringExtra(MainActivity.EXTRA_PICTURE));
 		} catch (MalformedURLException e) {
@@ -37,6 +37,15 @@ public class DisplayMessageActivity extends Activity {
 		TextView textView = (TextView) findViewById(R.id.movie_title);
 		textView.setTextSize(40);
 		textView.setText(message);
+		
+		if (synopText == null){
+			synopText = "There does not seem to be an synopsis here! Go to www.rottentomatoes.com for further inquiries.";
+		}
+		
+		TextView synopsis = (TextView) findViewById(R.id.synopsis);
+		synopsis.setTextSize(15);
+		synopsis.setText(synopText);
+		
 		
 		new ImageGet().execute(picture);
 		

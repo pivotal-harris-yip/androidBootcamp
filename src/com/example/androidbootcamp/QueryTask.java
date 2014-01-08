@@ -31,6 +31,7 @@ public class QueryTask extends AsyncTask<URL, Integer, String>{
     	public class Movie{
     		String title;
     		String picture;
+    		String synopsis;
     	}
     	
 		@Override
@@ -59,10 +60,14 @@ public class QueryTask extends AsyncTask<URL, Integer, String>{
 				List<String> titles = new ArrayList<String>();
 				List<Movie> movieList = new ArrayList<Movie>();
 				for(int i = 0; i < movies.length(); i++) {
-					titles.add(movies.getJSONObject(i).getString("title"));
+					JSONObject json = movies.getJSONObject(i);
+					String titleAndYear = json.getString("title") + " - " + json.getString("year");
+					titleAndYear = titleAndYear.replaceAll(" - $", "");
+					titles.add(titleAndYear);
 					Movie insert = new Movie();
-					insert.title = movies.getJSONObject(i).getString("title");
-					insert.picture = movies.getJSONObject(i).getJSONObject("posters").getString("detailed");
+					insert.title = json.getString("title") + " - " + json.getString("year");
+					insert.picture = json.getJSONObject("posters").getString("detailed");
+					insert.synopsis = json.getString("synopsis");
 					movieList.add(insert);
 				}
 

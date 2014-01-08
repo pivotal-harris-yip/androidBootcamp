@@ -19,6 +19,7 @@ import com.example.androidbootcamp.QueryTask.Movie;
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.example.androidbootcamp.MESSAGE";
 	public final static String EXTRA_PICTURE = "com.example.androidbootcamp.PICTURE";
+	public final static String EXTRA_SYNOPSIS = "com.example.androidbootcamp.SYNOPSIS";
 	
 	private List<Movie> movieData;
 	
@@ -48,8 +49,10 @@ public class MainActivity extends Activity {
 				Intent intent = new Intent (MainActivity.this, DisplayMessageActivity.class);
 				String title = movieData.get(position).title;
 				String picture = movieData.get(position).picture;
+				String synopsis = movieData.get(position).synopsis;
 		    	intent.putExtra(EXTRA_MESSAGE, title);
 		    	intent.putExtra(EXTRA_PICTURE, picture);
+		    	intent.putExtra(EXTRA_SYNOPSIS, synopsis);
 		    	startActivity(intent);
 			}
 		});
