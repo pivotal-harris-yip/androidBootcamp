@@ -38,9 +38,10 @@ public class MainActivity extends Activity {
 			e.printStackTrace();
 		}
 		
-        new QueryTask(this, getApplicationContext()).execute(url);
+		ListView list = (ListView) findViewById(R.id.list);
+        
+		new QueryTask(this, getApplicationContext(), list).execute(url);
 	        	
-        ListView list = (ListView) findViewById(R.id.list);
         list.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -11,7 +11,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
@@ -21,10 +20,12 @@ public class QueryTask extends AsyncTask<URL, Integer, String>{
 
     	private Context context;
     	private Object activity;
+    	private ListView listView;
     	
-    	public QueryTask(Object activity, Context context) {
+    	public QueryTask(Object activity, Context context, ListView listView) {
     		this.context = context.getApplicationContext();
     		this.activity = activity;
+    		this.listView = listView;
     	}
     	
     	public class Movie{
@@ -65,14 +66,14 @@ public class QueryTask extends AsyncTask<URL, Integer, String>{
 					movieList.add(insert);
 				}
 
-				ListView list = (ListView) ((Activity) activity).findViewById(R.id.list);
+				ListView list = listView;
 				ArrayAdapter<String> titleAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, titles);
 				list.setAdapter(titleAdapter);
 				
 				if(activity instanceof MainActivity) {
 					((MainActivity) activity).setMovieData(movieList);
 				} else if (activity instanceof SearchActivity) {
-					//((SearchActivity) activity).setMovieData(movieList);
+					((SearchActivity) activity).setMovieData(movieList);
 				} else {
 					throw new IllegalArgumentException("WHAT DID YOU DO???");
 				}
