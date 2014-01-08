@@ -9,5 +9,8 @@
     <string name="title_activity_display_message">My Message</string>
     <string name="hello_world">Hello world!</string>
     <string name="button_load">Load Items</string>
+    <string name="action_search">Search</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="search_hint">Enter query</string>
 
 </resources>

@@ -8,6 +8,8 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -30,9 +32,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.androidbootcamp.MainActivity" />
         </activity>
+        <activity
+            android:name="com.example.androidbootcamp.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:parentActivityName="com.example.androidbootcamp.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.androidbootcamp.MainActivity" />
+        </activity>
     </application>
-    
-    <uses-permission android:name="android.permission.INTERNET" /> 
-    
 
 </manifest>

@@ -1,11 +1,11 @@
 package com.example.androidbootcamp;
 
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -26,34 +26,32 @@ public class DisplayMessageActivity extends Activity {
 		
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-		String picture = intent.getStringExtra(MainActivity.EXTRA_PICTURE);
+		URL picture = null;
+		
+		try {
+			picture = new URL(intent.getStringExtra(MainActivity.EXTRA_PICTURE));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 		
 		TextView textView = (TextView) findViewById(R.id.movie_title);
 		textView.setTextSize(40);
 		textView.setText(message);
 		
-		ImageGet img = new ImageGet(this, picture);
-		img.execute();
+		new ImageGet().execute(picture);
+		
 		// Show the Up button in the action bar.
 		setupActionBar();
 	}
 	
 	private class ImageGet extends AsyncTask<URL, Integer, Drawable>{
 
-		String pic;
-		Context context;
-		public ImageGet(Context context, String picture){
-			pic = picture;
-			this.context = context.getApplicationContext();
-		}
 		@Override
-		protected Drawable doInBackground(URL... arg0) {
+		protected Drawable doInBackground(URL... url) {
 			Drawable d = null;
 			try {
-				URL url = new URL(pic);
-				InputStream content = (InputStream)url.getContent();
+				InputStream content = (InputStream) url[0].getContent();
 				d = Drawable.createFromStream(content , "src"); 
-				return d;
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
