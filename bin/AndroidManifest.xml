@@ -28,9 +28,9 @@
             android:name="com.example.androidbootcamp.DisplayMessageActivity"
             android:label="@string/title_activity_display_message"
             android:parentActivityName="com.example.androidbootcamp.MainActivity" >
-            <meta-data
+            <!-- <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.androidbootcamp.MainActivity" />
+                android:value="com.example.androidbootcamp.MainActivity" /> -->
         </activity>
         <activity
             android:name="com.example.androidbootcamp.SearchActivity"

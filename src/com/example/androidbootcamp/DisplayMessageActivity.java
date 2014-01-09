@@ -11,7 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -35,7 +35,7 @@ public class DisplayMessageActivity extends Activity {
 		}
 		
 		TextView textView = (TextView) findViewById(R.id.movie_title);
-		textView.setTextSize(40);
+		textView.setTextSize(28);
 		textView.setText(message);
 		
 		if (synopText == null){
@@ -101,8 +101,9 @@ public class DisplayMessageActivity extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			this.finish();
 			return true;
+			
 		}
 		return super.onOptionsItemSelected(item);
 	}
