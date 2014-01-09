@@ -12,6 +12,9 @@ public final class R {
     }
     public static final class color {
         public static final int awesome=0x7f040001;
+        /**   <color name="lightgray">#00FF7F</color>
+    <color name="awesome">#FF0080</color> 
+         */
         public static final int lightgray=0x7f040000;
     }
     public static final class dimen {
@@ -27,10 +30,12 @@ public final class R {
     public static final class drawable {
         public static final int ic_action_search=0x7f020000;
         public static final int ic_launcher=0x7f020001;
+        public static final int rounded=0x7f020002;
+        public static final int rounded2=0x7f020003;
     }
     public static final class id {
-        public static final int action_search=0x7f090008;
-        public static final int action_settings=0x7f090007;
+        public static final int action_search=0x7f090007;
+        public static final int action_settings=0x7f090008;
         public static final int list=0x7f090003;
         public static final int movie_image=0x7f090001;
         public static final int movie_title=0x7f090000;

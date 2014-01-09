@@ -7,11 +7,11 @@ import java.net.URL;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -24,6 +24,8 @@ public class DisplayMessageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_message);
 		
+		
+		
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 		URL picture = null;
@@ -35,10 +37,12 @@ public class DisplayMessageActivity extends Activity {
 		}
 		
 		TextView textView = (TextView) findViewById(R.id.movie_title);
+		Typeface typeFace = Typeface.createFromAsset(getAssets(),"fonts/Montserrat.ttf");
+		textView.setTypeface(typeFace);
 		textView.setTextSize(28);
 		textView.setText(message);
 		
-		if (synopText == null){
+		if (synopText.equals("")){
 			synopText = "There does not seem to be an synopsis here! Go to www.rottentomatoes.com for further inquiries.";
 		}
 		

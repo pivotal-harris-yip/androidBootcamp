@@ -2,29 +2,41 @@ package com.example.androidbootcamp;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-
-import com.example.androidbootcamp.QueryTask.Movie;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.example.androidbootcamp.MESSAGE";
 	public final static String EXTRA_PICTURE = "com.example.androidbootcamp.PICTURE";
 	public final static String EXTRA_SYNOPSIS = "com.example.androidbootcamp.SYNOPSIS";
+	public final static int DIALOG_DOWNLOAD_PROGRESS = 0;
+	private ProgressDialog loading;
+		
+	public ProgressDialog getDialog() {
+		return loading;
+	}
 	
-	private List<Movie> movieData;
-	
-	public void setMovieData(List<Movie> data) {
-		this.movieData = data;
+	@Override 
+	protected Dialog onCreateDialog(int id) {
+		switch(id){
+		case DIALOG_DOWNLOAD_PROGRESS:
+			loading = new ProgressDialog(this);
+			loading.setMessage("Loading...");
+			loading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			loading.setCancelable(false);
+			loading.show();
+			return loading;
+		default:
+			return null;				
+		}
 	}
 	
     @Override
@@ -42,20 +54,6 @@ public class MainActivity extends Activity {
 		ListView list = (ListView) findViewById(R.id.list);
         
 		new QueryTask(this, getApplicationContext(), list).execute(url);
-	        	
-        list.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Intent intent = new Intent (MainActivity.this, DisplayMessageActivity.class);
-				String title = movieData.get(position).title;
-				String picture = movieData.get(position).picture;
-				String synopsis = movieData.get(position).synopsis;
-		    	intent.putExtra(EXTRA_MESSAGE, title);
-		    	intent.putExtra(EXTRA_PICTURE, picture);
-		    	intent.putExtra(EXTRA_SYNOPSIS, synopsis);
-		    	startActivity(intent);
-			}
-		});
     }
 	
     @Override
@@ -69,6 +67,12 @@ public class MainActivity extends Activity {
     	switch(item.getItemId()){
 	    	case R.id.action_search:
 	    		openSearch();
+	    		return true;
+	    	case R.id.action_settings:
+	    		Toast toast = Toast.makeText(this, "There are no settings.", Toast.LENGTH_LONG);
+	    		//toast.getView().setBackgroundColor(Color.CYAN);
+	    		//toast.getView().setAlpha(0f);
+	    		toast.show();
 	    		return true;
     		default:
     			return false;

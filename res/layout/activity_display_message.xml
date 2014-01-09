@@ -8,14 +8,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DisplayMessageActivity" 
     android:orientation="vertical"
-    android:background="@android:color/black">
+    android:background="@color/lightgray">
 
      <TextView
         android:id="@+id/movie_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
-        android:background="@color/awesome"
-        android:textColor="@android:color/white"/>
+        android:background="@drawable/rounded2"
+        android:textColor="@android:color/black"/>
 
      <LinearLayout 
          android:layout_width="match_parent"
@@ -42,9 +42,11 @@
                  android:id="@+id/synopsis"
                  android:layout_width="wrap_content"
         	 	 android:layout_height="wrap_content"
-        	 	 android:background="@color/lightgray"
+        	 	 android:background="@drawable/rounded"
         	 	 android:padding="2dp" 
-        	 	 />
+        	 	 android:fontFamily="sans-serif-light" ></TextView>
+        	 	 <!-- android:textStyle="bold" -->
+        	 	 <!-- /> -->
              
          </ScrollView>
          

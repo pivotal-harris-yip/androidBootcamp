@@ -34,6 +34,18 @@ public class QueryTask extends AsyncTask<URL, Integer, String>{
     		String synopsis;
     	}
     	
+    	@Override 
+    	protected void onPreExecute(){
+    		super.onPreExecute();
+    		if(activity instanceof MainActivity) {
+				((MainActivity) activity).showDialog(MainActivity.DIALOG_DOWNLOAD_PROGRESS);
+			} else if (activity instanceof SearchActivity) {
+				((SearchActivity) activity).showDialog(MainActivity.DIALOG_DOWNLOAD_PROGRESS);
+			} else {
+				throw new IllegalArgumentException("WHAT DID YOU DO???");
+			}
+    	}
+    	
 		@Override
 		protected String doInBackground(URL... url) {
 			HttpURLConnection urlConnection = null;
@@ -76,9 +88,13 @@ public class QueryTask extends AsyncTask<URL, Integer, String>{
 				list.setAdapter(titleAdapter);
 				
 				if(activity instanceof MainActivity) {
-					((MainActivity) activity).setMovieData(movieList);
+					MainActivity act = (MainActivity) activity;
+					list.setOnItemClickListener(new ClickEvent(act, movieList));
+					act.getDialog().dismiss();
 				} else if (activity instanceof SearchActivity) {
-					((SearchActivity) activity).setMovieData(movieList);
+					SearchActivity act = (SearchActivity) activity;
+					list.setOnItemClickListener(new ClickEvent(act, movieList));
+					//act.getDialog().dismiss();
 				} else {
 					throw new IllegalArgumentException("WHAT DID YOU DO???");
 				}

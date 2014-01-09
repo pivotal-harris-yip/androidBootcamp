@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="lightgray">#00FF7F</color>
-    <color name="awesome">#FF0080</color>
+   <!--  <color name="lightgray">#00FF7F</color>
+    <color name="awesome">#FF0080</color> -->
+    <color name="lightgray">#3B3B3B</color>
+    <color name="awesome">#FFD300</color>
 </resources>
