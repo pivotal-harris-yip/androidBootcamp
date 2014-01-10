@@ -30,25 +30,81 @@
      	 	 android:layout_weight="0.5"
      	 	 android:layout_marginRight="5dp" 
              android:scaleType="fitStart" />
-
-         <ScrollView              
+         	
+         <LinearLayout 
              android:layout_width="0dp"
              android:layout_height="fill_parent"
              android:layout_weight="0.5"
              android:layout_marginLeft="5dp"
-             >
+             android:orientation="vertical">
              
+   	         <TextView
+                 android:text="@string/ratings_text"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:textSize="12sp"
+                 android:textColor="@color/orange"></TextView>
+   	         
              <TextView 
-                 android:id="@+id/synopsis"
-                 android:layout_width="wrap_content"
+                 android:id="@+id/ratings"
+                 android:layout_width="fill_parent"
         	 	 android:layout_height="wrap_content"
         	 	 android:background="@drawable/rounded"
         	 	 android:padding="2dp" 
         	 	 android:fontFamily="sans-serif-light" ></TextView>
-        	 	 <!-- android:textStyle="bold" -->
-        	 	 <!-- /> -->
+	             
+             <LinearLayout 
+                 android:layout_width="fill_parent"
+	             android:layout_height="wrap_content"
+	             android:orientation="vertical">
              
-         </ScrollView>
+                 <TextView
+	                 android:text="@string/critic_consensus"
+	                 android:layout_width="fill_parent"
+	                 android:layout_height="wrap_content"
+	                 android:textSize="12sp"
+	                 android:textColor="@color/orange"></TextView>
+	             
+		         <ScrollView              
+		             android:layout_width="fill_parent"
+		             android:layout_height="0dp"
+		             android:layout_weight="0.3">
+		             
+		             <TextView 
+		                 android:id="@+id/critic_consensus"
+		                 android:layout_width="fill_parent"
+		        	 	 android:layout_height="wrap_content"
+		        	 	 android:background="@drawable/rounded"
+		        	 	 android:padding="2dp" 
+		        	 	 android:fontFamily="sans-serif-light" ></TextView>
+		             
+		         </ScrollView>
+                 
+	             <TextView
+	                 android:text="@string/synop_text"
+	                 android:layout_width="fill_parent"
+	                 android:layout_height="wrap_content"
+	                 android:textSize="12sp"
+	                 android:textColor="@color/orange"></TextView>
+	             
+		         <ScrollView              
+		             android:layout_width="fill_parent"
+		             android:layout_height="0dp"
+		             android:layout_weight="0.5" >
+		             
+		             <TextView 
+		                 android:id="@+id/synopsis"
+		                 android:layout_width="fill_parent"
+		        	 	 android:layout_height="wrap_content"
+		        	 	 android:background="@drawable/rounded"
+		        	 	 android:padding="2dp" 
+		        	 	 android:fontFamily="sans-serif-light" ></TextView>
+		             
+		         </ScrollView>
+		         
+	         </LinearLayout>
+	                  
+         </LinearLayout>
          
      </LinearLayout>
 

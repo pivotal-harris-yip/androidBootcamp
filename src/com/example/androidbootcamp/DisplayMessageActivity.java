@@ -30,6 +30,9 @@ public class DisplayMessageActivity extends Activity {
 		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 		URL picture = null;
 		String synopText = intent.getStringExtra(MainActivity.EXTRA_SYNOPSIS);
+		String ratingsText = intent.getStringExtra(MainActivity.EXTRA_RATINGS);
+		String consensusText = intent.getStringExtra(MainActivity.EXTRA_CONSENSUS);
+		
 		try {
 			picture = new URL(intent.getStringExtra(MainActivity.EXTRA_PICTURE));
 		} catch (MalformedURLException e) {
@@ -47,9 +50,16 @@ public class DisplayMessageActivity extends Activity {
 		}
 		
 		TextView synopsis = (TextView) findViewById(R.id.synopsis);
-		synopsis.setTextSize(18);
+		synopsis.setTextSize(15);
 		synopsis.setText(synopText);
 		
+		TextView ratings = (TextView) findViewById(R.id.ratings);
+		ratings.setTextSize(15);
+		ratings.setText(ratingsText);
+		
+		TextView consensus = (TextView) findViewById(R.id.critic_consensus);
+		consensus.setTextSize(15);
+		consensus.setText(consensusText);
 		
 		new ImageGet().execute(picture);
 		

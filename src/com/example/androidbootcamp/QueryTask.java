@@ -32,6 +32,9 @@ public class QueryTask extends AsyncTask<URL, Integer, String>{
     		String title;
     		String picture;
     		String synopsis;
+    		String criticRating;
+    		String userRating;
+    		String criticConsensus;
     	}
     	
     	@Override 
@@ -80,6 +83,15 @@ public class QueryTask extends AsyncTask<URL, Integer, String>{
 					insert.title = json.getString("title") + " - " + json.getString("year");
 					insert.picture = json.getJSONObject("posters").getString("detailed");
 					insert.synopsis = json.getString("synopsis");
+					insert.criticRating = json.getJSONObject("ratings").getString("critics_score");
+					insert.userRating = json.getJSONObject("ratings").getString("audience_score");
+					
+					try{
+						insert.criticConsensus = json.getString("critics_consensus");
+					} catch (Exception e){	
+						insert.criticConsensus = "This movie has received no critical consensus and has broken our code.\n";
+					} 	
+					
 					movieList.add(insert);
 				}
 

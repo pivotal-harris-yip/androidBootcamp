@@ -12,5 +12,8 @@
     <string name="action_search">Search</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="search_hint">Enter query</string>
+    <string name="synop_text">Synopsis:</string>
+    <string name="ratings_text">Ratings:</string>
+    <string name="critic_consensus">Critic Consensus:</string>
 
 </resources>

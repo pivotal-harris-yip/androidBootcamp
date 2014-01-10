@@ -26,9 +26,27 @@ public class ClickEvent implements OnItemClickListener {
 		String title = movieData.get(position).title;
 		String picture = movieData.get(position).picture;
 		String synopsis = movieData.get(position).synopsis;
+		String criticRating = movieData.get(position).criticRating;
+		String consensus = movieData.get(position).criticConsensus;
+		String rating = "";
+		
+		if (!criticRating.equals("-1")){
+			rating += "Critic Score: " + criticRating + "\n";
+		}
+		
+		String userRating = movieData.get(position).userRating;
+		if (!userRating.equals("-1")){
+			rating += "Audience Score: " + userRating;
+		}
+		
+		if (rating.equals("")){
+			rating = "No ratings yet!";
+		}
     	intent.putExtra(MainActivity.EXTRA_MESSAGE, title);
     	intent.putExtra(MainActivity.EXTRA_PICTURE, picture);
     	intent.putExtra(MainActivity.EXTRA_SYNOPSIS, synopsis);
+    	intent.putExtra(MainActivity.EXTRA_RATINGS, rating);
+    	intent.putExtra(MainActivity.EXTRA_CONSENSUS, consensus);
     	context.startActivity(intent);
 	} 
 }

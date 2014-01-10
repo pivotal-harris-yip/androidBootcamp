@@ -16,6 +16,7 @@ public final class R {
     <color name="awesome">#FF0080</color> 
          */
         public static final int lightgray=0x7f040000;
+        public static final int orange=0x7f040002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -34,15 +35,17 @@ public final class R {
         public static final int rounded2=0x7f020003;
     }
     public static final class id {
-        public static final int action_search=0x7f090007;
-        public static final int action_settings=0x7f090008;
-        public static final int list=0x7f090003;
+        public static final int action_search=0x7f090009;
+        public static final int action_settings=0x7f09000a;
+        public static final int critic_consensus=0x7f090003;
+        public static final int list=0x7f090005;
         public static final int movie_image=0x7f090001;
         public static final int movie_title=0x7f090000;
-        public static final int search_button=0x7f090005;
-        public static final int search_field=0x7f090004;
-        public static final int search_list=0x7f090006;
-        public static final int synopsis=0x7f090002;
+        public static final int ratings=0x7f090002;
+        public static final int search_button=0x7f090007;
+        public static final int search_field=0x7f090006;
+        public static final int search_list=0x7f090008;
+        public static final int synopsis=0x7f090004;
     }
     public static final class layout {
         public static final int activity_display_message=0x7f030000;
@@ -60,9 +63,12 @@ public final class R {
         public static final int app_name=0x7f060000;
         public static final int button_load=0x7f060007;
         public static final int button_send=0x7f060001;
+        public static final int critic_consensus=0x7f06000d;
         public static final int edit_message=0x7f060002;
         public static final int hello_world=0x7f060006;
+        public static final int ratings_text=0x7f06000c;
         public static final int search_hint=0x7f06000a;
+        public static final int synop_text=0x7f06000b;
         public static final int title_activity_display_message=0x7f060005;
         public static final int title_activity_main=0x7f060003;
         public static final int title_activity_search=0x7f060009;

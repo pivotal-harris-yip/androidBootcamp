@@ -17,6 +17,8 @@ public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.example.androidbootcamp.MESSAGE";
 	public final static String EXTRA_PICTURE = "com.example.androidbootcamp.PICTURE";
 	public final static String EXTRA_SYNOPSIS = "com.example.androidbootcamp.SYNOPSIS";
+	public final static String EXTRA_RATINGS = "com.example.androidbootcamp.RATINGS";
+	public final static String EXTRA_CONSENSUS = "com.example.androidbootcamp.CONSENSUS";
 	public final static int DIALOG_DOWNLOAD_PROGRESS = 0;
 	private ProgressDialog loading;
 		
